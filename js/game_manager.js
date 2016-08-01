@@ -117,8 +117,8 @@ GameManager.prototype.moveTile = function (tile, cell) {
   tile.updatePosition(cell);
 };
 
-	// Move tiles on the grid in the specified direction
-	GameManager.prototype.move = function (direction) {
+// Move tiles on the grid in the specified direction
+GameManager.prototype.move = function (direction) {
 	// 0: up, 1: right, 2:down, 3: left
 	var self = this;
 	 
@@ -135,51 +135,51 @@ GameManager.prototype.moveTile = function (tile, cell) {
 	 
 	// Traverse the grid in the right direction and move tiles
 	traversals.x.forEach(function (x) {
-	traversals.y.forEach(function (y) {
-	cell = { x: x, y: y };
-	tile = self.grid.cellContent(cell);
+	    traversals.y.forEach(function (y) {
+	        cell = { x: x, y: y };
+	        tile = self.grid.cellContent(cell);
 	 
-	if (tile) {
-	var positions = self.findFarthestPosition(cell, vector);
-	var next = self.grid.cellContent(positions.next);
+	        if (tile) {
+	            var positions = self.findFarthestPosition(cell, vector);
+	            var next = self.grid.cellContent(positions.next);
 	 
-	// Only one merger per row traversal?
-	if (next && self.testFib(next.value, tile.value) && !next.mergedFrom) {
-	var merged = new Tile(positions.next, tile.value + next.value);
-	merged.mergedFrom = [tile, next];
+	            // Only one merger per row traversal?
+	            if (next && self.testFib(next.value, tile.value) && !next.mergedFrom) {
+	                var merged = new Tile(positions.next, tile.value + next.value);
+	                merged.mergedFrom = [tile, next];
 	 
-	self.grid.insertTile(merged);
-	self.grid.removeTile(tile);
+	                self.grid.insertTile(merged);
+	                self.grid.removeTile(tile);
 	 
-	// Converge the two tiles' positions
-	tile.updatePosition(positions.next);
+	                // Converge the two tiles' positions
+	                tile.updatePosition(positions.next);
 	 
-	// Update the score
-	self.score += merged.value;
+	                // Update the score
+	                self.score += merged.value;
 	 
-	// The mighty 2584 tile
-	if (merged.value === 10946) self.won = true;
-	} else {
-	self.moveTile(tile, positions.farthest);
-	}
+	                // The mighty 10946 tile
+	                if (merged.value === 10946) self.won = true;
+	                } else {
+	                    self.moveTile(tile, positions.farthest);
+	                }
 	 
-	if (!self.positionsEqual(cell, tile)) {
-	moved = true; // The tile moved from its original cell!
-	}
-	}
-	});
-	});
+	                if (!self.positionsEqual(cell, tile)) {
+	                    moved = true; // The tile moved from its original cell!
+                	   }
+	            }
+	        });
+	    });
 	 
 	if (moved) {
-	this.addRandomTile();
+	    this.addRandomTile();
 	 
-	if (!this.movesAvailable()) {
-	this.over = true; // Game over!
-	}
+	    if (!this.movesAvailable()) {
+	        this.over = true; // Game over!
+	    }
 	 
-	this.actuate();
+	    this.actuate();
 	}
-	};
+};
 
 
 
