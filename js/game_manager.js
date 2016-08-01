@@ -13,6 +13,23 @@ function GameManager(size, InputManager, Actuator, ScoreManager) {
   this.setup();
 }
 
+// Tests if two values sum to a Fibonacci number
+GameManager.prototype.testFib = function(val1, val2) {
+  var sum = val1 + val2;
+  var fib = [1,1]
+
+  while (sum > fib[fib.length-1]) {
+    fib.push(fib[fib.length-1] + fib[fib.length-2])
+  }
+  
+  for (var i = 0; i<fib.length && sum>=fib[i]; i++) {
+    if (sum === fib[i]) {
+      return true;
+    }
+  }
+  return false;
+};
+
 // Restart the game
 GameManager.prototype.restart = function () {
   this.actuator.continue();
