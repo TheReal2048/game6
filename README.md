@@ -1,7 +1,7 @@
 # 10946
 A fibonacci version of 16384, created by [Rudradev Basak](https://github.com/rudradevbasak), which is a hexagonal version of the popular 2048 game originally created by [Gabriele Cirulli](https://github.com/gabrielecirulli)
 
-[Play it here!](http://HoneyBe.github.io/10946/)
+[Play it here!](http://Honey-Be.github.io/10946/)
 
 
 ## Contributing
