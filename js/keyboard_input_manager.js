@@ -35,8 +35,8 @@ KeyboardInputManager.prototype.listen = function () {
   var self = this;
 
   var map = {
-    39: 2, // Right
-    37: 3, // Left
+    37: 2, // Right
+    39: 3, // Left
     87: 0, // W
     69: 1, // E
     65: 2, // A
